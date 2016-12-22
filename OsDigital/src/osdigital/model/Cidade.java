@@ -30,13 +30,13 @@ public class Cidade implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "cid_id")
     private int cid_id;
     @Column(name = "nome", length = 120, nullable = true)
     private String cid_nome;
     @Basic(optional = false)
     @Column(name = "estado_id")
-    private int estadoId;
+    private int estado_id;
 
     public void setCid_id(int cid_id) {
         this.cid_id = cid_id;
@@ -54,11 +54,18 @@ public class Cidade implements Serializable {
         return cid_id;
     }
 
+    public int getEstado_id() {
+        return estado_id;
+    }
+
+    public void setEstado_id(int estado_id) {
+        this.estado_id = estado_id;
+    }
+
     @Override
     public String toString() {
         // TODO Auto-generated method stub
         return this.cid_nome;
     }
-
 
 }
