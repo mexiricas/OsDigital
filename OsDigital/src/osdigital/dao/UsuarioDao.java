@@ -18,16 +18,21 @@ public class UsuarioDao implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public  Usuario pesqUsuario(String usuario, String senha) {
+    public Usuario pesqUsuario(String usuario, String senha) {
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         try {
-            Query consulta = sessao.createQuery("from Pessoa where pes_email = " + usuario + " and usrs_senha = :parametro");
-            consulta.setString("parametro", senha);
-            return (Usuario) consulta.uniqueResult();
+            Query consulta = sessao.createQuery("from Usuario where usrs_login = :parametro");
+            consulta.setString("parametro", usuario);
+            if (consulta.list().size() == 0) {
+                return null;
+            } else {
+                return (Usuario) consulta.uniqueResult();
+            }
         } catch (RuntimeException erro) {
             throw erro;
         } finally {
             sessao.close();
         }
+
     }
 }
