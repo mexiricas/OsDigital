@@ -21,9 +21,9 @@
         <property name="use_sql_comments">true</property>
 
         <!-- Mapeamento de Classe -->
-        <mapping class="br.com.beans.Pessoa" />
-        <mapping class="br.com.beans.Cidade" />
-        <mapping class="br.com.beans.Estado" />
-        <mapping class="br.com.beans.Usuario" />       
+        <mapping class="osdigital.model.Pessoa" />
+        <mapping class="osdigital.model.Cidade" />
+        <mapping class="osdigital.model.Estado" />
+        <mapping class="osdigital.model.Usuario" />       
     </session-factory>
 </hibernate-configuration>

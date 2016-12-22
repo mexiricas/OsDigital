@@ -83,9 +83,6 @@ public class Usuario implements Serializable {
         this.usrs_nivel = usrs_nivel;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "usrs_id=" + usrs_id + ", pes_id=" + pes_id + ", usrs_nome=" + usrs_nome + ", usrs_login=" + usrs_login + ", usrs_senha=" + usrs_senha + ", usrs_nivel=" + usrs_nivel + '}';
-    }
+
 
 }

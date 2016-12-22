@@ -6,12 +6,18 @@
 package osdigital.model;
 
 import java.io.Serializable;
+import java.util.Collection;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,6 +34,9 @@ public class Cidade implements Serializable {
     private int cid_id;
     @Column(name = "nome", length = 120, nullable = true)
     private String cid_nome;
+    @Basic(optional = false)
+    @Column(name = "estado_id")
+    private int estadoId;
 
     public void setCid_id(int cid_id) {
         this.cid_id = cid_id;
@@ -50,5 +59,6 @@ public class Cidade implements Serializable {
         // TODO Auto-generated method stub
         return this.cid_nome;
     }
+
 
 }

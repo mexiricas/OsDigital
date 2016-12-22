@@ -6,13 +6,20 @@
 package osdigital.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlTransient;
 import org.hibernate.annotations.Type;
 
 /**
@@ -34,9 +41,6 @@ public class Pessoa implements Serializable {
     private String pes_cpf;
     @Column(name = "pes_rg", length = 20, nullable = true)
     private String pes_rg;
-    @Column
-    @Type(type = "date")
-    private Date pes_data_nasc;
     @Column(name = "pes_rua", length = 60, nullable = true)
     private String pes_rua;
     @Column(name = "pes_bairro", length = 30, nullable = true)
@@ -45,6 +49,11 @@ public class Pessoa implements Serializable {
     private String pes_cep;
     @Column(name = "pes_email", length = 40, nullable = true)
     private String pes_email;
+    @Column(name = "pes_data_nasc")
+    @Temporal(TemporalType.DATE)
+    private Date pesDataNasc;
+    @Column(name = "pes_login")
+    private String pesLogin;
 
     public int getPes_id() {
         return pes_id;
@@ -78,14 +87,6 @@ public class Pessoa implements Serializable {
         this.pes_rg = pes_rg;
     }
 
-    public Date getPes_data_nasc() {
-        return pes_data_nasc;
-    }
-
-    public void setPes_data_nasc(Date pes_data_nasc) {
-        this.pes_data_nasc = pes_data_nasc;
-    }
-
     public String getPes_rua() {
         return pes_rua;
     }
@@ -116,6 +117,37 @@ public class Pessoa implements Serializable {
 
     public void setPes_email(String pes_email) {
         this.pes_email = pes_email;
+    }
+
+    public Pessoa() {
+    }
+
+    public Date getPesDataNasc() {
+        return pesDataNasc;
+    }
+
+    public void setPesDataNasc(Date pesDataNasc) {
+        this.pesDataNasc = pesDataNasc;
+    }
+
+    public String getPesLogin() {
+        return pesLogin;
+    }
+
+    public void setPesLogin(String pesLogin) {
+        this.pesLogin = pesLogin;
+    }
+
+    @OneToMany(mappedBy = "pes_id")
+    private Collection<Usuario> usuarioCollection;
+
+    @XmlTransient
+    public Collection<Usuario> getUsuarioCollection() {
+        return usuarioCollection;
+    }
+
+    public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
+        this.usuarioCollection = usuarioCollection;
     }
 
 }

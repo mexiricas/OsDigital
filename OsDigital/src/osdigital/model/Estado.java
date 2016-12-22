@@ -6,12 +6,16 @@
 package osdigital.model;
 
 import java.io.Serializable;
+import java.util.Collection;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -21,10 +25,11 @@ import javax.persistence.Table;
 @Table(name = "estados")
 public class Estado implements Serializable {
 
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "est_id")
     private int est_id;
     @Column(name = "nome", length = 120, nullable = true)
     private String est_nome;
@@ -55,9 +60,4 @@ public class Estado implements Serializable {
         this.est_sigla = est_sigla;
     }
 
-    @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return Integer.toString(this.est_id);
-    }
 }
