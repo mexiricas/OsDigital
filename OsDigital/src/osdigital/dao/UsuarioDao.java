@@ -6,8 +6,10 @@
 package osdigital.dao;
 
 import java.io.Serializable;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import osdigital.model.Usuario;
 
 /**
@@ -21,8 +23,10 @@ public class UsuarioDao implements Serializable {
     public Usuario pesqUsuario(String usuario, String senha) {
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         try {
-            Query consulta = sessao.createQuery("from Usuario where usrs_login = :parametro");
-            consulta.setString("parametro", usuario);
+            Criteria consulta = sessao.createCriteria(Usuario.class);
+            //na tabela usuário deve constar os campos login e senha.
+            consulta.add(Restrictions.eq("usrs_login", usuario));
+            consulta.add(Restrictions.eq("usrs_senha", senha));
             if (consulta.list().size() == 0) {
                 return null;
             } else {

@@ -19,13 +19,7 @@ public class frmOsDgital extends javax.swing.JFrame {
      */
     public frmOsDgital() {
         initComponents();
-        centralizarComponente();
-    }
-
-    public void centralizarComponente() {
-        Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension dw = getSize();
-        setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -70,6 +64,7 @@ public class frmOsDgital extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/1466118389_analytics.png"))); // NOI18N
         jLabel1.setText("OS - DIGITAL");
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Pessoais"));
 
         jLabel2.setText("Nome");
@@ -271,9 +266,9 @@ public class frmOsDgital extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

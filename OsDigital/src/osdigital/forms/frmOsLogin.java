@@ -25,14 +25,8 @@ public class frmOsLogin extends javax.swing.JFrame {
      */
     public frmOsLogin() {
         initComponents();
-        centralizarComponente();
-        setResizable(false);
-    }
-
-    public void centralizarComponente() {
-        Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension dw = getSize();
-        setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -214,16 +208,16 @@ public class frmOsLogin extends javax.swing.JFrame {
 
         UsuarioDao usDao = new UsuarioDao();
 //        Usuario us = usDao.pesqUsuario(campoLogin.getText(), campoSenha.getText());
-        
-         Usuario us = usDao.pesqUsuario("mexiricas", "1234");
-        
-         if (us != null) {
-                frmOsDgital frm = new frmOsDgital();
-                frm.setVisible(true);
-                this.dispose();
-            } else {
-                status.setText(" Usuario e/ou Senha incorreta!!");
-            }
+
+        Usuario us = usDao.pesqUsuario("mexiricas", "1234");
+
+        if (us != null) {
+            frmOsDgital frm = new frmOsDgital();
+            frm.setVisible(true);
+            this.dispose();
+        } else {
+            status.setText(" Usuario e/ou Senha incorreta!!");
+        }
     }//GEN-LAST:event_jbtEntrarActionPerformed
 
     private void jbtEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbtEntrarKeyPressed
