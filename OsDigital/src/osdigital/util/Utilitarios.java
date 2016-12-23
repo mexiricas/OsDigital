@@ -84,7 +84,7 @@ public class Utilitarios {
     }
 
     public static Date converteParaDate(String Data) {
-        DateFormat formatodata = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat formatodata = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date DataGuiaformatada3 = formatodata.parse(Data);
             return DataGuiaformatada3;
