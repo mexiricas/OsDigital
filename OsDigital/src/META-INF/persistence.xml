@@ -8,6 +8,7 @@
     <class>osdigital.model.Usuario</class>
     <class>osdigital.dao.CidadeDao</class>
     <class>osdigital.dao.UsuarioDao</class>
+    <class>osdigital.dao.ClienteDAO</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/BDLojaVirtual"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
