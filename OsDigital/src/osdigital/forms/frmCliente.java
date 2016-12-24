@@ -16,6 +16,7 @@ import osdigital.dao.CidadeDao;
 import osdigital.dao.ClienteDAO;
 import osdigital.model.Cidade;
 import osdigital.model.Estado;
+import osdigital.model.Fone;
 import osdigital.model.Pessoa;
 import osdigital.util.Mascara;
 import osdigital.util.Utilitarios;
@@ -74,6 +75,22 @@ public class frmCliente extends javax.swing.JFrame {
 
     }
 
+    public void clientePesquisado(Pessoa cli) {
+        ClienteDAO clDao = new ClienteDAO();
+        this.cliente = clDao.pesqPessoaNome(cli.getPes_nome());
+        if(cliente != null){
+            txtNome.setText(cliente.getPes_nome());
+            txtEmail.setText(cliente.getPes_email());
+            txtData.setText(Utilitarios.converteDataParaString(cliente.getPesDataNasc()));  
+            txtCpf.setText(cliente.getPes_cpf());
+            txtCep.setText(cliente.getPes_cep()); 
+            txtRua.setText(cliente.getPes_rua());
+            
+           
+        }
+        
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,7 +122,7 @@ public class frmCliente extends javax.swing.JFrame {
         txtCpf = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        txtEndereco = new javax.swing.JTextField();
+        txtRua = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -351,7 +368,7 @@ public class frmCliente extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtEndereco))
+                            .addComponent(txtRua))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
@@ -379,9 +396,7 @@ public class frmCliente extends javax.swing.JFrame {
                             .addComponent(jLabel20))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addGap(25, 25, 25))
+                            .addComponent(jLabel21)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -389,13 +404,14 @@ public class frmCliente extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel11)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cidadeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -499,13 +515,16 @@ public class frmCliente extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
         ClienteDAO clDao = new ClienteDAO();
-
+        Fone fone = new Fone();
         cliente.setPes_nome(txtNome.getText());
         cliente.setPes_rg(txtRg.getText());
         cliente.setPes_cpf(txtCpf.getText());
-        cliente.setPes_rua(txtEndereco.getText());
+        cliente.setPes_rua(txtRua.getText());
         cliente.setPes_cep(txtCep.getText());
         cliente.setPes_email(txtEmail.getText());
+        fone.setPessoa(this.cliente);
+        fone.setNumero(txtCel.getText()); 
+        cliente.getFones().add(fone);
         cliente.setPesDataNasc(Utilitarios.converteParaDate(txtData.getText()));
         //FIZ UMA ALTERAÇÃO NESTE CAMPO COLOQUEI UM COMBOBOX
         clDao.inserir(cliente);
@@ -627,9 +646,9 @@ public class frmCliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JFormattedTextField txtData;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtRg;
+    private javax.swing.JTextField txtRua;
     private javax.swing.JComboBox<String> txtSexo;
     private javax.swing.JFormattedTextField txtTel;
     // End of variables declaration//GEN-END:variables

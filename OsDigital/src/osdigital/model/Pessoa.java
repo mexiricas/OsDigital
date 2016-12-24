@@ -6,10 +6,14 @@
 package osdigital.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -138,16 +142,26 @@ public class Pessoa implements Serializable {
         this.pesLogin = pesLogin;
     }
 
-    @OneToMany(mappedBy = "pes_id")
-    private Collection<Usuario> usuarioCollection;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "cid_id", nullable = true)
+    private Cidade cid;
 
-    @XmlTransient
-    public Collection<Usuario> getUsuarioCollection() {
-        return usuarioCollection;
+    public Cidade getCid() {
+        return cid;
     }
 
-    public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
-        this.usuarioCollection = usuarioCollection;
+    public void setCid(Cidade cid) {
+        this.cid = cid;
     }
 
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Fone> fones = new ArrayList<Fone>();
+
+    public List<Fone> getFones() {
+        return fones;
+    }
+
+    public void setFones(List<Fone> fones) {
+        this.fones = fones;
+    }
 }

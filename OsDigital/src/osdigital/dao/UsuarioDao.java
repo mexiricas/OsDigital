@@ -7,8 +7,8 @@ package osdigital.dao;
 
 import java.io.Serializable;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import osdigital.model.Usuario;
 
@@ -20,6 +20,13 @@ public class UsuarioDao implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public void inserir(Usuario usu) {
+        Session sessao = HibernateUtil.getSessionFactory().openSession();
+        Transaction t = sessao.beginTransaction();
+        sessao.save(usu);
+        t.commit();
+        sessao.close();
+    }
     public Usuario pesqUsuario(String usuario, String senha) {
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         try {

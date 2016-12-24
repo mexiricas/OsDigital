@@ -30,7 +30,7 @@ public class Cidade implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cid_id")
+    @Column(name = "id")
     private int cid_id;
     @Column(name = "nome", length = 120, nullable = true)
     private String cid_nome;

@@ -88,7 +88,7 @@ public class ClienteDAO implements Serializable {
         }
     }
     
-    public Pessoa pesqEstado(String pes_nome) {
+    public Pessoa pesqPessoaNome(String pes_nome) {
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         try {
             Criteria consulta = sessao.createCriteria(Pessoa.class);
