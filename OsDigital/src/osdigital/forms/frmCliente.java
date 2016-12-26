@@ -77,7 +77,7 @@ public class frmCliente extends javax.swing.JFrame {
 
     public void clientePesquisado(Pessoa cli) {
         ClienteDAO clDao = new ClienteDAO();
-        this.cliente = clDao.pesqPessoaNome(cli.getPes_nome());
+        this.cliente = clDao.pesqPessoaCPF(cli.getPes_cpf());
         if(cliente != null){
             txtNome.setText(cliente.getPes_nome());
             txtEmail.setText(cliente.getPes_email());

@@ -88,11 +88,11 @@ public class ClienteDAO implements Serializable {
         }
     }
     
-    public Pessoa pesqPessoaNome(String pes_nome) {
+    public Pessoa pesqPessoaCPF(String pes_cpf) {
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         try {
             Criteria consulta = sessao.createCriteria(Pessoa.class);
-            consulta.add(Restrictions.eq("pes_nome", pes_nome));
+            consulta.add(Restrictions.eq("pes_cpf", pes_cpf));
             if (consulta.list().size() == 0) {
                 return null;
             } else {

@@ -7,9 +7,11 @@ package osdigital.forms;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.ParseException;
 import javax.swing.JOptionPane;
 import osdigital.dao.ClienteDAO;
 import osdigital.model.Pessoa;
+import osdigital.util.Mascara;
 
 /**
  *
@@ -23,8 +25,18 @@ public class frmOsPrincipal extends javax.swing.JFrame {
     public frmOsPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setResizable(false); 
-        
+        this.setResizable(false);
+        mascara();
+    }
+    Mascara mask = new Mascara();
+
+    public void mascara() {
+        try {
+            mask.maskCPF(txtCpf);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(frmOsPrincipal.this, "CPF Invalido", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        }
     }
 
     /**
@@ -178,15 +190,11 @@ public class frmOsPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel4))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton6)
-                            .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -251,13 +259,17 @@ public class frmOsPrincipal extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-       frmCliente fm = new frmCliente();
-       ClienteDAO clDao = new ClienteDAO();
-       Pessoa cli = clDao.pesqPessoaNome(txtCpf.getText());
-       fm.clientePesquisado(cli);
-       fm.setVisible(true);
-       fm.setLocationRelativeTo(null);
-       dispose();
+        frmCliente fm = new frmCliente();
+        ClienteDAO clDao = new ClienteDAO();
+        Pessoa cli = clDao.pesqPessoaCPF(txtCpf.getText());
+        if (cli == null) {
+             JOptionPane.showMessageDialog(frmOsPrincipal.this, "CPF inválido", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            fm.clientePesquisado(cli);
+            fm.setVisible(true);
+            fm.setLocationRelativeTo(null);
+            dispose();
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -266,7 +278,7 @@ public class frmOsPrincipal extends javax.swing.JFrame {
         fmUsu.setVisible(true);
         fmUsu.setLocationRelativeTo(null);
         dispose();
-                
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
