@@ -201,9 +201,9 @@ public class frmOsLogin extends javax.swing.JFrame {
     private void jbtEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtEntrarActionPerformed
 
         UsuarioDao usDao = new UsuarioDao();
-//        Usuario us = usDao.pesqUsuario(campoLogin.getText(), campoSenha.getText());
+        Usuario us = usDao.pesqUsuario(campoLogin.getText(), campoSenha.getText());
 
-        Usuario us = usDao.pesqUsuario("mexiricas", "1234");
+//        Usuario us = usDao.pesqUsuario("mexiricas", "1234");
 
         if (us != null) {
             frmOsPrincipal frm = new frmOsPrincipal();

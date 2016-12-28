@@ -6,6 +6,7 @@
 package osdigital.forms;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,6 +21,7 @@ import osdigital.model.Estado;
 import osdigital.model.Fone;
 import osdigital.model.Pessoa;
 import osdigital.model.Usuario;
+import osdigital.util.Mascara;
 import osdigital.util.Utilitarios;
 
 /**
@@ -38,6 +40,17 @@ public class frmUsuario extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.jPanel3.setVisible(false);
+        mascara();
+    }
+    Mascara mask = new Mascara();
+
+    public void mascara() {
+        try {
+            mask.maskCPF(txtCpf);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(frmUsuario.this, "CPF Invalido", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        }
     }
 
     public void atualizaTabelaNome(Pessoa pes) {
@@ -67,7 +80,7 @@ public class frmUsuario extends javax.swing.JFrame {
         } while (!senha.equals(senhanova) || senha == null || senha.equals("") || senhanova == null || senhanova.equals(""));
         JOptionPane.showMessageDialog(null, "Sua senha é " + senha);
         txtSenha.setText(senha);
-        txtNome.setText(pes.getPes_nome());
+        txtCpf.setText(pes.getPes_cpf());
     }
 
     /**
@@ -82,7 +95,6 @@ public class frmUsuario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        txtNome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
@@ -91,6 +103,7 @@ public class frmUsuario extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         txtLogin = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JFormattedTextField();
         btnSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -109,12 +122,6 @@ public class frmUsuario extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
-
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("CPF:");
 
@@ -188,15 +195,13 @@ public class frmUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,14 +211,13 @@ public class frmUsuario extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton6)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -256,11 +260,11 @@ public class frmUsuario extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(399, 399, 399)
+                        .addGap(367, 367, 367)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addGap(56, 56, 56)
                         .addComponent(jButton2)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,14 +277,14 @@ public class frmUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(btnSalvar))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,31 +304,43 @@ public class frmUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        Pessoa cli = clDao.pesqPessoaCPF(txtNome.getText());
+        Pessoa cli = clDao.pesqPessoaCPF(txtCpf.getText());
 
         if (cli == null) {
             JOptionPane.showMessageDialog(this, "É necessário pesquisar uma pessoa para poder cadastrar Usuario", "Cadastro de Usuario", JOptionPane.INFORMATION_MESSAGE);
         } else if (txtLogin.getText().length() == 0) {
             JOptionPane.showMessageDialog(this, "Digite um login para o usuario", "Cadastro de Usuario", JOptionPane.INFORMATION_MESSAGE);
-            txtNome.requestFocus();
+            txtCpf.requestFocus();
             return;
 
         } else {
             UsuarioDao usDao = new UsuarioDao();
-            usua.setUsrs_nome(cli.getPes_nome());
-            usua.setUsrs_login(txtLogin.getText());
-            usua.setUsrs_senha(txtSenha.getText());
-            usua.setUsrs_nivel("adm");
-            usua.setPes_id(cli.getPes_id());
 
-            usDao.inserir(usua);
-            JOptionPane.showMessageDialog(this, "Gravado com sucesso", "Cadastro de Usuario", JOptionPane.INFORMATION_MESSAGE);
-            if (JOptionPane.showConfirmDialog(this, "Deseja cadastrar pessoa?", "OS-DIGITAL",
-                    JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-                frmOsPrincipal fm = new frmOsPrincipal();
-                fm.setVisible(true);
-                fm.setLocationRelativeTo(null);
-                dispose();
+            usua = usDao.pesqUsuario(txtLogin.getText(), txtSenha.getText());
+            if (usua == null) {
+                try {
+                    Usuario usua = new Usuario();
+                    usua.setUsrs_nome(cli.getPes_nome());
+                    usua.setUsrs_login(txtLogin.getText());
+                    usua.setUsrs_senha(txtSenha.getText());
+                    usua.setUsrs_nivel("adm");
+                    usua.setPes_id(cli.getPes_id());
+
+                    usDao.inserir(usua);
+
+                    JOptionPane.showMessageDialog(this, "Gravado com sucesso", "Cadastro de Usuario", JOptionPane.INFORMATION_MESSAGE);
+                    if (JOptionPane.showConfirmDialog(this, "Deseja cadastrar pessoa?", "OS-DIGITAL",
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+                        frmOsPrincipal fm = new frmOsPrincipal();
+                        fm.setVisible(true);
+                        fm.setLocationRelativeTo(null);
+                        dispose();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario já Cadastrado", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -332,7 +348,7 @@ public class frmUsuario extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        Pessoa cli = clDao.pesqPessoaCPF(txtNome.getText());
+        Pessoa cli = clDao.pesqPessoaCPF(txtCpf.getText());
 
         if (cli != null) {
             frmUsuario fmUs = new frmUsuario();
@@ -361,10 +377,6 @@ public class frmUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_txtSenhaMouseClicked
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -422,8 +434,8 @@ public class frmUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTable jTable1;
+    private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtLogin;
-    private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

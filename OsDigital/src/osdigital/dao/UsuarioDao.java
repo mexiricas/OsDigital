@@ -31,7 +31,6 @@ public class UsuarioDao implements Serializable {
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         try {
             Criteria consulta = sessao.createCriteria(Usuario.class);
-            //na tabela usuário deve constar os campos login e senha.
             consulta.add(Restrictions.eq("usrs_login", usuario));
             consulta.add(Restrictions.eq("usrs_senha", senha));
             if (consulta.list().size() == 0) {
