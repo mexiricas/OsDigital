@@ -86,6 +86,8 @@ public class frmCliente extends javax.swing.JFrame {
             txtCep.setText(cliente.getPes_cep());
             txtRua.setText(cliente.getPes_rua());
 
+        }else{
+         this.cliente = new Pessoa();
         }
 
     }
