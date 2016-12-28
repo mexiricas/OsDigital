@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import osdigital.dao.CidadeDao;
-import osdigital.dao.ClienteDAO;
+import osdigital.dao.PessoaDAO;
 import osdigital.dao.UsuarioDao;
 import osdigital.model.Cidade;
 import osdigital.model.Estado;
@@ -34,7 +34,7 @@ public class frmUsuario extends javax.swing.JFrame {
      * Creates new form frmUsuario
      */
     Usuario usua = new Usuario();
-    ClienteDAO clDao = new ClienteDAO();
+    PessoaDAO clDao = new PessoaDAO();
 
     public frmUsuario() {
         initComponents();

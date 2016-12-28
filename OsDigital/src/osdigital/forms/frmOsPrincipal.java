@@ -9,7 +9,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.ParseException;
 import javax.swing.JOptionPane;
-import osdigital.dao.ClienteDAO;
+import osdigital.dao.PessoaDAO;
 import osdigital.model.Pessoa;
 import osdigital.util.Mascara;
 
@@ -272,7 +272,7 @@ public class frmOsPrincipal extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         frmCliente fm = new frmCliente();
-        ClienteDAO clDao = new ClienteDAO();
+        PessoaDAO clDao = new PessoaDAO();
         Pessoa cli = clDao.pesqPessoaCPF(txtCpf.getText());
         if (cli == null) {
              JOptionPane.showMessageDialog(frmOsPrincipal.this, "CPF inválido", "Erro", JOptionPane.ERROR_MESSAGE);

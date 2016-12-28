@@ -18,7 +18,7 @@ import osdigital.model.Pessoa;
  *
  * @author HJ-Sistemas
  */
-public class ClienteDAO implements Serializable {
+public class PessoaDAO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,6 +26,14 @@ public class ClienteDAO implements Serializable {
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         Transaction t = sessao.beginTransaction();
         sessao.save(pessoa);
+        t.commit();
+        sessao.close();
+    }
+    
+    public void alterar(Pessoa pessoa) {
+        Session sessao = HibernateUtil.getSessionFactory().openSession();
+        Transaction t = sessao.beginTransaction();
+        sessao.update(pessoa);
         t.commit();
         sessao.close();
     }

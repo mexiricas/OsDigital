@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import osdigital.dao.CidadeDao;
-import osdigital.dao.ClienteDAO;
+import osdigital.dao.PessoaDAO;
 import osdigital.model.Cidade;
 import osdigital.model.Estado;
 import osdigital.model.Fone;
@@ -76,19 +76,18 @@ public class frmCliente extends javax.swing.JFrame {
     }
 
     public void clientePesquisado(Pessoa cli) {
-        ClienteDAO clDao = new ClienteDAO();
+        PessoaDAO clDao = new PessoaDAO();
         this.cliente = clDao.pesqPessoaCPF(cli.getPes_cpf());
-        if(cliente != null){
+        if (cliente != null) {
             txtNome.setText(cliente.getPes_nome());
             txtEmail.setText(cliente.getPes_email());
-            txtData.setText(Utilitarios.converteDataParaString(cliente.getPesDataNasc()));  
+            txtData.setText(Utilitarios.voltaDataStr(Utilitarios.converteDataParaString(cliente.getPesDataNasc())));
             txtCpf.setText(cliente.getPes_cpf());
-            txtCep.setText(cliente.getPes_cep()); 
+            txtCep.setText(cliente.getPes_cep());
             txtRua.setText(cliente.getPes_rua());
-            
-           
+
         }
-        
+
     }
 
     /**
@@ -128,12 +127,12 @@ public class frmCliente extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtBairro = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtLT = new javax.swing.JTextField();
+        txtQD = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         estCombo = new javax.swing.JComboBox<>();
         cidadeCombo = new javax.swing.JComboBox<>();
@@ -198,6 +197,17 @@ public class frmCliente extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/1466118389_analytics.png"))); // NOI18N
         jLabel4.setText("OS - DIGITAL");
+
+        txtCpf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCpfFocusLost(evt);
+            }
+        });
+        txtCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCpfActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -299,6 +309,12 @@ public class frmCliente extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
+        txtRua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRuaActionPerformed(evt);
+            }
+        });
+
         jLabel7.setText("Rua");
 
         jLabel9.setText("CEP");
@@ -309,9 +325,9 @@ public class frmCliente extends javax.swing.JFrame {
 
         jLabel18.setText("Cidade");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtBairro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtBairroActionPerformed(evt);
             }
         });
 
@@ -380,7 +396,7 @@ public class frmCliente extends javax.swing.JFrame {
                         .addGap(55, 55, 55))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,12 +408,12 @@ public class frmCliente extends javax.swing.JFrame {
                             .addComponent(jLabel19))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtQD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel20))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtLT, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -419,7 +435,7 @@ public class frmCliente extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,8 +446,8 @@ public class frmCliente extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtQD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -514,35 +530,60 @@ public class frmCliente extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
-        ClienteDAO clDao = new ClienteDAO();
+        PessoaDAO clDao = new PessoaDAO();
         Fone fone = new Fone();
-        cliente.setPes_nome(txtNome.getText());
-        cliente.setPes_rg(txtRg.getText());
-        cliente.setPes_cpf(txtCpf.getText());
-        cliente.setPes_rua(txtRua.getText());
-        cliente.setPes_cep(txtCep.getText());
-        cliente.setPes_email(txtEmail.getText());
-        fone.setPessoa(this.cliente);
-        fone.setNumero(txtCel.getText()); 
-        cliente.getFones().add(fone);
-        cliente.setPesDataNasc(Utilitarios.converteParaDate(txtData.getText()));
-        //FIZ UMA ALTERAÇÃO NESTE CAMPO COLOQUEI UM COMBOBOX
-        clDao.inserir(cliente);
-        if (JOptionPane.showConfirmDialog(this, "Deseja cadastrar outro cliente?", "OS-DIGITAL",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+        String rua = "";
+        if (cliente.getPes_id() == 0) {
+
+            rua = txtRua.getText() + txtQD.getText() + txtLT.getText();
+            cliente.setPes_nome(txtNome.getText());
+            cliente.setPes_rg(txtRg.getText());
+            cliente.setPes_cpf(txtCpf.getText());
+            cliente.setPes_rua(rua);
+            cliente.setPes_cep(txtCep.getText());
+            cliente.setPes_email(txtEmail.getText());
+            cliente.setPes_bairro(txtBairro.getText());
+            fone.setPessoa(this.cliente);
+            fone.setNumero(txtCel.getText());
+            cliente.getFones().add(fone);
+            cliente.setPesDataNasc(Utilitarios.converteParaDate(txtData.getText()));
+            //FIZ UMA ALTERAÇÃO NESTE CAMPO COLOQUEI UM COMBOBOX
+            clDao.inserir(cliente);
+            if (JOptionPane.showConfirmDialog(this, "Deseja cadastrar outro cliente?", "OS-DIGITAL",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+                frmOsPrincipal fm = new frmOsPrincipal();
+                fm.setLocationRelativeTo(null);
+                fm.setVisible(true);
+                this.dispose();
+            } else {
+                this.dispose();
+                new frmCliente().setVisible(true);
+            }
+        } else {
+
+            rua = txtRua.getText() + txtQD.getText() + txtLT.getText();
+            cliente.setPes_nome(txtNome.getText());
+            cliente.setPes_rg(txtRg.getText());
+            cliente.setPes_cpf(txtCpf.getText());
+            cliente.setPes_rua(rua);
+            cliente.setPes_cep(txtCep.getText());
+            cliente.setPes_email(txtEmail.getText());
+            cliente.setPes_bairro(txtBairro.getText());
+            fone.getPessoa();
+            fone.setNumero(txtCel.getText());
+            cliente.setPesDataNasc(Utilitarios.converteParaDate(txtData.getText()));
+            clDao.alterar(cliente);
+            JOptionPane.showMessageDialog(frmCliente.this, "Cadastro alterado com sucesso!!", "Mensagem", JOptionPane.WARNING_MESSAGE);
             frmOsPrincipal fm = new frmOsPrincipal();
             fm.setLocationRelativeTo(null);
             fm.setVisible(true);
             this.dispose();
-        } else {
-            this.dispose();
-            new frmCliente().setVisible(true);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBairroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtBairroActionPerformed
 
     private void estComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_estComboItemStateChanged
         // TODO add your handling code here:
@@ -576,6 +617,21 @@ public class frmCliente extends javax.swing.JFrame {
     private void estComboKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_estComboKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_estComboKeyPressed
+
+    private void txtRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRuaActionPerformed
+
+    private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCpfActionPerformed
+
+    private void txtCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCpfFocusLost
+        // TODO add your handling code here:
+        Pessoa pes = new Pessoa();
+        pes.setPes_cpf(txtCpf.getText());
+        clientePesquisado(pes);
+    }//GEN-LAST:event_txtCpfFocusLost
 
     /**
      * @param args the command line arguments
@@ -638,15 +694,15 @@ public class frmCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCel;
     private javax.swing.JFormattedTextField txtCep;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JFormattedTextField txtData;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtLT;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtQD;
     private javax.swing.JTextField txtRg;
     private javax.swing.JTextField txtRua;
     private javax.swing.JComboBox<String> txtSexo;
