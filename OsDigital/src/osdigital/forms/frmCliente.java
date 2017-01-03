@@ -11,11 +11,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import osdigital.dao.CidadeDao;
 import osdigital.dao.PessoaDAO;
 import osdigital.model.Cidade;
 import osdigital.model.Estado;
+import osdigital.model.EstadoComboBox;
 import osdigital.model.Fone;
 import osdigital.model.Pessoa;
 import osdigital.util.Mascara;
@@ -38,6 +41,7 @@ public class frmCliente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         mascara();
+        estadoComboBox();
     }
 
     public void mascara() {
@@ -77,6 +81,7 @@ public class frmCliente extends javax.swing.JFrame {
 
     public void clientePesquisado(Pessoa cli) {
         PessoaDAO clDao = new PessoaDAO();
+
         this.cliente = clDao.pesqPessoaCPF(cli.getPes_cpf());
         if (cliente != null) {
             txtNome.setText(cliente.getPes_nome());
@@ -84,12 +89,22 @@ public class frmCliente extends javax.swing.JFrame {
             txtData.setText(Utilitarios.voltaDataStr(Utilitarios.converteDataParaString(cliente.getPesDataNasc())));
             txtCpf.setText(cliente.getPes_cpf());
             txtCep.setText(cliente.getPes_cep());
-            txtRua.setText(cliente.getPes_rua());
+            txtRua.setText(cliente.getPes_cpf());
+            txtQD.setText(cliente.getPes_quadra());
+            txtLT.setText(cliente.getPes_lote());
 
-        }else{
-         this.cliente = new Pessoa();
+        } else {
+            this.cliente = new Pessoa();
         }
 
+    }
+
+    public void estadoComboBox() {
+        ////para usar 
+        CidadeDao cidDao = new CidadeDao();
+        List<Estado> lista = cidDao.listagemSiglaEstados(null);
+        EstadoComboBox model = new EstadoComboBox(lista);
+        estCombo.setModel(model);
     }
 
     /**
@@ -339,7 +354,7 @@ public class frmCliente extends javax.swing.JFrame {
 
         jLabel20.setText("QD.");
 
-        estCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GO", "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO", " ", " " }));
+        estCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GO" }));
         estCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 estComboItemStateChanged(evt);
@@ -536,15 +551,15 @@ public class frmCliente extends javax.swing.JFrame {
         Fone fone = new Fone();
         String rua = "";
         if (cliente.getPes_id() == 0) {
-
-            rua = txtRua.getText() + txtQD.getText() + txtLT.getText();
             cliente.setPes_nome(txtNome.getText());
             cliente.setPes_rg(txtRg.getText());
             cliente.setPes_cpf(txtCpf.getText());
-            cliente.setPes_rua(rua);
+            cliente.setPes_rua(txtRua.getText());
             cliente.setPes_cep(txtCep.getText());
             cliente.setPes_email(txtEmail.getText());
             cliente.setPes_bairro(txtBairro.getText());
+            cliente.setPes_quadra(txtQD.getText());
+            cliente.setPes_lote(txtLT.getText());
             fone.setPessoa(this.cliente);
             fone.setNumero(txtCel.getText());
             cliente.getFones().add(fone);
@@ -562,16 +577,16 @@ public class frmCliente extends javax.swing.JFrame {
                 new frmCliente().setVisible(true);
             }
         } else {
-
-            rua = txtRua.getText() + txtQD.getText() + txtLT.getText();
             cliente.setPes_nome(txtNome.getText());
             cliente.setPes_rg(txtRg.getText());
             cliente.setPes_cpf(txtCpf.getText());
-            cliente.setPes_rua(rua);
+            cliente.setPes_rua(txtRua.getText());
             cliente.setPes_cep(txtCep.getText());
             cliente.setPes_email(txtEmail.getText());
             cliente.setPes_bairro(txtBairro.getText());
-            fone.getPessoa();
+            cliente.setPes_quadra(txtQD.getText());
+            cliente.setPes_lote(txtLT.getText());
+            fone.setPessoa(this.cliente);
             fone.setNumero(txtCel.getText());
             cliente.setPesDataNasc(Utilitarios.converteParaDate(txtData.getText()));
             clDao.alterar(cliente);
@@ -589,7 +604,6 @@ public class frmCliente extends javax.swing.JFrame {
 
     private void estComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_estComboItemStateChanged
         // TODO add your handling code here:
-
         CidadeDao cidDao = new CidadeDao();
         Estado est = cidDao.pesqEstado(estCombo.getSelectedItem().toString());
         List listaEst = cidDao.listagemCidades(est.getEst_id());
@@ -604,12 +618,12 @@ public class frmCliente extends javax.swing.JFrame {
 
     private void estComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estComboMouseClicked
         // TODO add your handling code here:
+    
 
     }//GEN-LAST:event_estComboMouseClicked
 
     private void estComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estComboActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_estComboActionPerformed
 
     private void estComboPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_estComboPropertyChange

@@ -56,8 +56,10 @@ public class Pessoa implements Serializable {
     @Column(name = "pes_data_nasc")
     @Temporal(TemporalType.DATE)
     private Date pesDataNasc;
-    @Column(name = "pes_login")
-    private String pesLogin;
+    @Column(name = "pes_quadra")
+    private String pes_quadra;
+    @Column(name = "pes_lote")
+    private String pes_lote;
 
     public int getPes_id() {
         return pes_id;
@@ -134,12 +136,20 @@ public class Pessoa implements Serializable {
         this.pesDataNasc = pesDataNasc;
     }
 
-    public String getPesLogin() {
-        return pesLogin;
+    public String getPes_quadra() {
+        return pes_quadra;
     }
 
-    public void setPesLogin(String pesLogin) {
-        this.pesLogin = pesLogin;
+    public void setPes_quadra(String pes_quadra) {
+        this.pes_quadra = pes_quadra;
+    }
+
+    public String getPes_lote() {
+        return pes_lote;
+    }
+
+    public void setPes_lote(String pes_lote) {
+        this.pes_lote = pes_lote;
     }
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = true)

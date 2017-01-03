@@ -24,6 +24,8 @@
         <mapping class="osdigital.model.Pessoa" />
         <mapping class="osdigital.model.Cidade" />
         <mapping class="osdigital.model.Estado" />
-        <mapping class="osdigital.model.Usuario" />       
+        <mapping class="osdigital.model.Usuario" /> 
+        <mapping class="osdigital.model.Fone" />  
+        <mapping class="osdigital.model.Aparelho" />        
     </session-factory>
 </hibernate-configuration>

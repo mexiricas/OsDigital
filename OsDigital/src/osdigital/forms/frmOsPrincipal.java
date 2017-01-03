@@ -255,7 +255,7 @@ public class frmOsPrincipal extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        frmCliente fm = new frmCliente();
+        frmAparelho fm = new frmAparelho();
         fm.setLocationRelativeTo(null);
         fm.setVisible(true);
         this.dispose();

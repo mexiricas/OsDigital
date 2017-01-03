@@ -11,6 +11,8 @@
     <class>osdigital.model.Fone</class>
     <class>osdigital.model.OsDigital</class>
     <class>osdigital.dao.PessoaDAO</class>
+    <class>osdigital.dao.AparelhoDao</class>
+    <class>osdigital.model.Aparelho</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/BDLojaVirtual"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

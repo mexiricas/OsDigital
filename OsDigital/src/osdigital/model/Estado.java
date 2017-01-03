@@ -25,11 +25,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "estados")
 public class Estado implements Serializable {
 
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "est_id")
+    @Column(name = "id")
     private int est_id;
     @Column(name = "nome", length = 120, nullable = true)
     private String est_nome;
@@ -58,6 +57,11 @@ public class Estado implements Serializable {
 
     public void setEst_sigla(String est_sigla) {
         this.est_sigla = est_sigla;
+    }
+
+    @Override
+    public String toString() {
+        return est_sigla;
     }
 
 }

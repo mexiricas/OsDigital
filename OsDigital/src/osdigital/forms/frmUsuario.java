@@ -273,11 +273,11 @@ public class frmUsuario extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(btnSalvar))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -329,7 +329,7 @@ public class frmUsuario extends javax.swing.JFrame {
                     usDao.inserir(usua);
 
                     JOptionPane.showMessageDialog(this, "Gravado com sucesso", "Cadastro de Usuario", JOptionPane.INFORMATION_MESSAGE);
-                    if (JOptionPane.showConfirmDialog(this, "Deseja cadastrar pessoa?", "OS-DIGITAL",
+                    if (JOptionPane.showConfirmDialog(this, "Deseja cadastrar um novo usuário?", "OS-DIGITAL",
                             JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
                         frmOsPrincipal fm = new frmOsPrincipal();
                         fm.setVisible(true);

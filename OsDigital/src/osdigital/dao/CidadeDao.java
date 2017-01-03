@@ -57,6 +57,8 @@ public class CidadeDao implements Serializable {
             Query consulta = null;
             if (filtro == null || filtro.equals("")) {
                 consulta = sessao.createQuery("from Estado order by sigla");
+                List lsest = consulta.list();
+                return lsest;
             } else {
                 consulta = sessao
                         .createQuery("from Estado where sigla like :parametro");
@@ -70,18 +72,38 @@ public class CidadeDao implements Serializable {
             sessao.close();
 
         }
-        return null;
+      
     }
 
     public Estado pesqEstado(String est_sigla) {
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         try {
             Criteria consulta = sessao.createCriteria(Estado.class);
-            consulta.add(Restrictions.eq("est_sigla", est_sigla));
+            if (est_sigla != null || !est_sigla.equals("")) {
+                consulta.add(Restrictions.eq("est_sigla", est_sigla));
+            }
             if (consulta.list().size() == 0) {
                 return null;
             } else {
                 return (Estado) consulta.uniqueResult();
+            }
+        } catch (RuntimeException erro) {
+            throw erro;
+        } finally {
+            sessao.close();
+        }
+
+    }
+
+    public Cidade pesqCidade(int cid_id) {
+        Session sessao = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Criteria consulta = sessao.createCriteria(Estado.class);
+            consulta.add(Restrictions.eq("cid_id", cid_id));
+            if (consulta.list().size() == 0) {
+                return null;
+            } else {
+                return (Cidade) consulta.uniqueResult();
             }
         } catch (RuntimeException erro) {
             throw erro;
