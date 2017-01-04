@@ -255,17 +255,13 @@ public class frmOsPrincipal extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        frmAparelho fm = new frmAparelho();
-        fm.setLocationRelativeTo(null);
-        fm.setVisible(true);
+        new frmAparelho().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        frmCliente fm = new frmCliente();
-        fm.setLocationRelativeTo(null);
-        fm.setVisible(true);
+        new frmCliente().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -286,9 +282,7 @@ public class frmOsPrincipal extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        frmUsuario fmUsu = new frmUsuario();
-        fmUsu.setVisible(true);
-        fmUsu.setLocationRelativeTo(null);
+        new frmUsuario().setVisible(true);
         dispose();
 
     }//GEN-LAST:event_jButton7ActionPerformed
@@ -303,6 +297,8 @@ public class frmOsPrincipal extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        new frmOsDgital().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

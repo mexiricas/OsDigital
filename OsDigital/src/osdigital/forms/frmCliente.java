@@ -568,9 +568,7 @@ public class frmCliente extends javax.swing.JFrame {
             clDao.inserir(cliente);
             if (JOptionPane.showConfirmDialog(this, "Deseja cadastrar outro cliente?", "OS-DIGITAL",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-                frmOsPrincipal fm = new frmOsPrincipal();
-                fm.setLocationRelativeTo(null);
-                fm.setVisible(true);
+                new frmOsPrincipal().setVisible(true);
                 this.dispose();
             } else {
                 this.dispose();
@@ -591,9 +589,7 @@ public class frmCliente extends javax.swing.JFrame {
             cliente.setPesDataNasc(Utilitarios.converteParaDate(txtData.getText()));
             clDao.alterar(cliente);
             JOptionPane.showMessageDialog(frmCliente.this, "Cadastro alterado com sucesso!!", "Mensagem", JOptionPane.WARNING_MESSAGE);
-            frmOsPrincipal fm = new frmOsPrincipal();
-            fm.setLocationRelativeTo(null);
-            fm.setVisible(true);
+            new frmOsPrincipal().setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
