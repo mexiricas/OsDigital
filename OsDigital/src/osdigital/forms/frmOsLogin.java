@@ -5,14 +5,8 @@
  */
 package osdigital.forms;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import osdigital.dao.UsuarioDao;
 import osdigital.model.Usuario;
 
@@ -124,6 +118,11 @@ public class frmOsLogin extends javax.swing.JFrame {
         campoSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoSenhaActionPerformed(evt);
+            }
+        });
+        campoSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoSenhaKeyPressed(evt);
             }
         });
 
@@ -252,8 +251,13 @@ public class frmOsLogin extends javax.swing.JFrame {
 
     private void campoLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoLoginKeyPressed
         // TODO add your handling code here:
-        jbtEntrar.setEnabled(true);
+        
     }//GEN-LAST:event_campoLoginKeyPressed
+
+    private void campoSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoSenhaKeyPressed
+        // TODO add your handling code here:
+        jbtEntrar.setEnabled(true);
+    }//GEN-LAST:event_campoSenhaKeyPressed
 
     /**
      * @param args the command line arguments
