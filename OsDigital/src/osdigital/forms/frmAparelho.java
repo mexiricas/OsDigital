@@ -37,15 +37,15 @@ public class frmAparelho extends javax.swing.JFrame {
             @Override
             public void keyReleased(KeyEvent evt) {
                 String cadenaEscrita = boxNombre.getEditor().getItem().toString();
-              
+
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
                     if (comparar(cadenaEscrita)) {// compara si el texto escrito se ecuentra en la lista
                         // busca el texto escrito en la base de datos
-                        buscar(cadenaEscrita);
+                        boxNombre.setSelectedIndex(0);
                     } else {// en caso contrario toma como default el elemento 0 o sea el primero de la lista y lo busca.
                         buscar(boxNombre.getItemAt(0).toString());
                         boxNombre.setSelectedIndex(0);
-                    }
+                }
                 }
                 if (evt.getKeyCode() >= 65 && evt.getKeyCode() <= 90 || evt.getKeyCode() >= 96 && evt.getKeyCode() <= 105 || evt.getKeyCode() == 8) {
 
@@ -56,13 +56,13 @@ public class frmAparelho extends javax.swing.JFrame {
                         boxNombre.setModel(model);
                     } catch (Exception e) {
                         Logger.getLogger(frmAparelho.class.getName()).log(Level.SEVERE, null, e);
-            }
+                    }
 
                     if (boxNombre.getItemCount() > 0) {
                         boxNombre.getEditor().setItem(cadenaEscrita);
                         boxNombre.showPopup();
 
-                    }
+                }
                 }
 
             }
@@ -200,7 +200,7 @@ public class frmAparelho extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(estCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtMarca, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                            .addComponent(txtMarca, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                             .addComponent(txtModelo)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
