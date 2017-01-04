@@ -115,7 +115,7 @@ public class frmOsDgital extends javax.swing.JFrame {
         txtQD = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         estCombo = new javax.swing.JComboBox<>();
-        cidadeCombo2 = new javax.swing.JComboBox<>();
+        cidadeCombo = new javax.swing.JComboBox<>();
         txtCep = new javax.swing.JFormattedTextField();
         jToggleButton1 = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
@@ -323,7 +323,7 @@ public class frmOsDgital extends javax.swing.JFrame {
             }
         });
 
-        cidadeCombo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Goiânia" }));
+        cidadeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Goiânia" }));
 
         txtCep.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -351,7 +351,7 @@ public class frmOsDgital extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
-                            .addComponent(cidadeCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cidadeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(55, 55, 55))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,7 +389,7 @@ public class frmOsDgital extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(estCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cidadeCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cidadeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -525,11 +525,11 @@ public class frmOsDgital extends javax.swing.JFrame {
         CidadeDao cidDao = new CidadeDao();
         Estado est = cidDao.pesqEstado(estCombo.getSelectedItem().toString());
         List listaEst = cidDao.listagemCidades(est.getEst_id());
-        cidadeCombo2.addItem("");
-        cidadeCombo2.removeAllItems();
+        cidadeCombo.addItem("");
+        cidadeCombo.removeAllItems();
         for (Iterator it = listaEst.iterator(); it.hasNext();) {
             Cidade cid = (Cidade) it.next();
-            cidadeCombo2.addItem(cid.getCid_nome());
+            cidadeCombo.addItem(cid.getCid_nome());
         }
     }//GEN-LAST:event_estComboItemStateChanged
 
@@ -647,14 +647,14 @@ public class frmOsDgital extends javax.swing.JFrame {
     private void povoaCidade() {
         CidadeDao cidDao = new CidadeDao();
         List<Cidade> listaEst = cidDao.listagemCidades(9);
-        cidadeCombo2.removeAllItems();
+        cidadeCombo.removeAllItems();
         for (Cidade cid : listaEst) {
-            cidadeCombo2.addItem(cid.getCid_nome());
+            cidadeCombo.addItem(cid.getCid_nome());
         }
-        cidadeCombo2.setSelectedIndex(53);
+        cidadeCombo.setSelectedIndex(53);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cidadeCombo2;
+    private javax.swing.JComboBox<String> cidadeCombo;
     private javax.swing.JComboBox<String> estCombo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

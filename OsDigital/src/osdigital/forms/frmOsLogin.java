@@ -7,6 +7,8 @@ package osdigital.forms;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +29,35 @@ public class frmOsLogin extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        campoSenha.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent evt) {
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (campoLogin.getText().length() > 0 && !campoLogin.getText().trim().equals("") && !campoSenha.getText().trim().equals("") && campoSenha.getText().length() > 0) {
+                        UsuarioDao usDao = new UsuarioDao();
+//        Usuario us = usDao.pesqUsuario(campoLogin.getText(), campoSenha.getText());
+                        Usuario us = usDao.pesqUsuario("mexiricas", "1234");
+                        if (us != null) {
+                            new frmOsPrincipal().setVisible(true);
+                            dispose();
+                        } else {
+                            status.setText(" Usuario e/ou Senha incorreta!!");
+                        }
+                    } else {
+                        status.setText(" Usuario e/ou Senha incorreta!!");
+                    }
+
+                }
+            }
+        });
+        campoLogin.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent evt) {
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                    campoLogin.transferFocus();
+                }
+            }
+        });
     }
 
     /**

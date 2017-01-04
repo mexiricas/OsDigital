@@ -41,7 +41,9 @@ public class frmCliente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         mascara();
-        estadoComboBox();
+        povoaUF();
+        povoaCidade();
+
     }
 
     public void mascara() {
@@ -77,6 +79,23 @@ public class frmCliente extends javax.swing.JFrame {
 
         }
 
+    }
+
+    private void povoaUF() {
+        CidadeDao cidDao = new CidadeDao();
+        List<Estado> listaEst = cidDao.listagemSiglaEstados(null);
+        EstadoComboBox model = new EstadoComboBox(listaEst);
+        estCombo.setModel(model);
+        estCombo.setSelectedIndex(8);
+    }
+
+    private void povoaCidade() {
+        CidadeDao cidDao = new CidadeDao();
+        List<Cidade> listaCid = cidDao.listagemCidades(9);
+        cidadeCombo.removeAllItems();
+        EstadoComboBox model = new EstadoComboBox(listaCid);
+        cidadeCombo.setModel(model);
+        cidadeCombo.setSelectedIndex(53);
     }
 
     public void clientePesquisado(Pessoa cli) {
@@ -549,7 +568,6 @@ public class frmCliente extends javax.swing.JFrame {
 
         PessoaDAO clDao = new PessoaDAO();
         Fone fone = new Fone();
-        String rua = "";
         if (cliente.getPes_id() == 0) {
             cliente.setPes_nome(txtNome.getText());
             cliente.setPes_rg(txtRg.getText());
@@ -614,7 +632,7 @@ public class frmCliente extends javax.swing.JFrame {
 
     private void estComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estComboMouseClicked
         // TODO add your handling code here:
-    
+
 
     }//GEN-LAST:event_estComboMouseClicked
 

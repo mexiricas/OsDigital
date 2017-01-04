@@ -35,7 +35,6 @@ public class frmOsPrincipal extends javax.swing.JFrame {
             mask.maskCPF(txtCpf);
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(frmOsPrincipal.this, "CPF Invalido", "Erro", JOptionPane.ERROR_MESSAGE);
-
         }
     }
 

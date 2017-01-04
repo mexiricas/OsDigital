@@ -400,7 +400,7 @@
                                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cidadeCombo2" min="-2" pref="147" max="-2" attributes="0"/>
+                                          <Component id="cidadeCombo" min="-2" pref="147" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                   </Group>
@@ -452,7 +452,7 @@
                                       <Component id="txtRua" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="estCombo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="cidadeCombo2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cidadeCombo" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -580,7 +580,7 @@
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="cidadeCombo2">
+                    <Component class="javax.swing.JComboBox" name="cidadeCombo">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
