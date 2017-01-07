@@ -91,4 +91,25 @@ public class AparelhoDao implements Serializable {
             sessao.close();
         }
     }
+    
+      public Aparelho pesqAparelhoMarcaUnique(String marca) {
+        Session sessao = HibernateUtil.getSessionFactory().openSession();
+        List lscid = null;
+        Criteria consulta = null;
+        try {
+            
+            if (marca == null || marca.equalsIgnoreCase("")) {
+                return null;
+            } else {
+                consulta = sessao.createCriteria(Aparelho.class);
+                consulta.setProjection(Projections.distinct(Projections.property("apcdMarca")));
+                consulta.add(Restrictions.ilike("apcdMarca", "%" + marca + "%"));
+                return (Aparelho) consulta.uniqueResult();
+            }
+        } catch (RuntimeException erro) {
+            throw erro;
+        } finally {
+            sessao.close();
+        }
+    }
 }

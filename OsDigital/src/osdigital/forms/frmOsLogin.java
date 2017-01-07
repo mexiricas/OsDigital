@@ -23,7 +23,7 @@ public class frmOsLogin extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        campoSenha.addKeyListener(new KeyAdapter() {
+         campoSenha.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent evt) {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -232,7 +232,6 @@ public class frmOsLogin extends javax.swing.JFrame {
 
         UsuarioDao usDao = new UsuarioDao();
 //        Usuario us = usDao.pesqUsuario(campoLogin.getText(), campoSenha.getText());
-
         Usuario us = usDao.pesqUsuario("mexiricas", "1234");
 
         if (us != null) {

@@ -43,8 +43,6 @@ public class frmOsDgital extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         mascara();
-        povoaUF();
-        povoaCidade();
     }
 
     public void mascara() {
@@ -119,6 +117,10 @@ public class frmOsDgital extends javax.swing.JFrame {
         txtCep = new javax.swing.JFormattedTextField();
         jToggleButton1 = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -129,6 +131,7 @@ public class frmOsDgital extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/1466118389_analytics.png"))); // NOI18N
         jLabel1.setText("OS - DIGITAL");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Codigo:");
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
@@ -211,7 +214,7 @@ public class frmOsDgital extends javax.swing.JFrame {
                                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(jLabel3)
-                                                    .addGap(18, 18, 18)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                     .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                                     .addGap(129, 129, 129)
@@ -233,9 +236,9 @@ public class frmOsDgital extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -249,11 +252,9 @@ public class frmOsDgital extends javax.swing.JFrame {
                             .addComponent(txtCel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -322,8 +323,6 @@ public class frmOsDgital extends javax.swing.JFrame {
                 estComboKeyPressed(evt);
             }
         });
-
-        cidadeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Goiânia" }));
 
         txtCep.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -449,15 +448,66 @@ public class frmOsDgital extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Cadastro de Cliente", jPanel5);
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Os Digital", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel25.setText("Marca");
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel26.setText("Modelo");
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel25))
+                .addContainerGap(558, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel25)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel26)
+                .addContainerGap(138, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(281, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 497, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cadastrar Aparelho", jPanel1);
@@ -512,47 +562,43 @@ public class frmOsDgital extends javax.swing.JFrame {
         setBounds(0, 0, 697, 664);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRuaActionPerformed
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtRuaActionPerformed
+        new frmOsPrincipal().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void txtBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBairroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBairroActionPerformed
+    private void txtCepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCepFocusLost
 
-    private void estComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_estComboItemStateChanged
-        // TODO add your handling code here:
-        CidadeDao cidDao = new CidadeDao();
-        Estado est = cidDao.pesqEstado(estCombo.getSelectedItem().toString());
-        List listaEst = cidDao.listagemCidades(est.getEst_id());
-        cidadeCombo.addItem("");
-        cidadeCombo.removeAllItems();
-        for (Iterator it = listaEst.iterator(); it.hasNext();) {
-            Cidade cid = (Cidade) it.next();
-            cidadeCombo.addItem(cid.getCid_nome());
-        }
-    }//GEN-LAST:event_estComboItemStateChanged
-
-    private void estComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estComboMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_estComboMouseClicked
-
-    private void estComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estComboActionPerformed
-
-    private void estComboPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_estComboPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_estComboPropertyChange
+    }//GEN-LAST:event_txtCepFocusLost
 
     private void estComboKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_estComboKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_estComboKeyPressed
 
-    private void txtCepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCepFocusLost
+    private void estComboPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_estComboPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estComboPropertyChange
 
-    }//GEN-LAST:event_txtCepFocusLost
+    private void estComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estComboActionPerformed
+
+    private void estComboMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estComboMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estComboMouseClicked
+
+    private void estComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_estComboItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estComboItemStateChanged
+
+    private void txtBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBairroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBairroActionPerformed
+
+    private void txtRuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRuaActionPerformed
 
     private void txtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpfActionPerformed
         // TODO add your handling code here:
@@ -568,15 +614,19 @@ public class frmOsDgital extends javax.swing.JFrame {
             txtData.setText(Utilitarios.voltaDataStr(Utilitarios.converteDataParaString(cliente.getPesDataNasc())));
             txtCpf.setText(cliente.getPes_cpf());
             txtCep.setText(cliente.getPes_cep());
-            txtRua.setText(cliente.getPes_cpf());
+            txtRua.setText(cliente.getPes_rua());
             txtQD.setText(cliente.getPes_quadra());
             txtLT.setText(cliente.getPes_lote());
+            cidadeCombo.addItem(cliente.getCid().getCid_nome());
+            CidadeDao cidDao = new CidadeDao();
+            Estado est = cidDao.pesqEstadoId(cliente.getCid().getEstado_id());
+            estCombo.addItem(est.getEst_sigla());
         } else if (JOptionPane.showConfirmDialog(this, "Cliente não cadastrado deseja cadastrar cliente?", "OS-DIGITAL",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            frmCliente fm = new frmCliente();
-            fm.setLocationRelativeTo(null);
-            fm.setVisible(true);
-            this.dispose();
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        frmCliente fm = new frmCliente();
+        fm.setLocationRelativeTo(null);
+        fm.setVisible(true);
+        this.dispose();
         } else {
             this.dispose();
             new frmOsPrincipal().setVisible(true);
@@ -590,15 +640,8 @@ public class frmOsDgital extends javax.swing.JFrame {
     private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
         if (!Mascara.isEmailValid(txtEmail.getText())) {
             JOptionPane.showMessageDialog(null, "Email inválido! ");
-
         }
     }//GEN-LAST:event_txtEmailFocusLost
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-        new frmOsPrincipal().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -635,49 +678,49 @@ public class frmOsDgital extends javax.swing.JFrame {
         });
     }
 
-    private void povoaUF() {
-        CidadeDao cidDao = new CidadeDao();
-        List<Estado> listaEst = cidDao.listagemSiglaEstados(null);
-        for (Estado est : listaEst) {
-            estCombo.addItem(est.getEst_sigla());
-        }
-        estCombo.setSelectedIndex(8);
-    }
-
-    private void povoaCidade() {
-        CidadeDao cidDao = new CidadeDao();
-        List<Cidade> listaEst = cidDao.listagemCidades(9);
-        cidadeCombo.removeAllItems();
-        for (Cidade cid : listaEst) {
-            cidadeCombo.addItem(cid.getCid_nome());
-        }
-        cidadeCombo.setSelectedIndex(53);
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox boxNombre;
+    private javax.swing.JComboBox boxNombre1;
+    private javax.swing.JComboBox boxNombre2;
     private javax.swing.JComboBox<String> cidadeCombo;
     private javax.swing.JComboBox<String> estCombo;
+    private javax.swing.JComboBox<String> estCombo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -689,6 +732,10 @@ public class frmOsDgital extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtData;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLT;
+    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtMarca1;
+    private javax.swing.JTextField txtMarca2;
+    private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtQD;
     private javax.swing.JTextField txtRg;

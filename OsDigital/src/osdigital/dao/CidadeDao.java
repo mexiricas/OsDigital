@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import osdigital.model.Cidade;
@@ -27,7 +28,7 @@ public class CidadeDao implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public  List<Cidade> listagemCidades(int est_id) {
+    public List<Cidade> listagemCidades(int est_id) {
 
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         try {
@@ -37,6 +38,7 @@ public class CidadeDao implements Serializable {
             } else {
                 consulta = sessao.createCriteria(Cidade.class);
                 consulta.add(Restrictions.eq("estado_id", est_id));
+                consulta.addOrder(Order.asc("id"));
                 List lscid = consulta.list();
                 return lscid;
             }
@@ -49,7 +51,7 @@ public class CidadeDao implements Serializable {
         return null;
     }
 
-    public  List<Cidade> listagemCidadesPorNome(String nome) {
+    public List<Cidade> listagemCidadesPorNome(String nome) {
 
         Session sessao = HibernateUtil.getSessionFactory().openSession();
         try {
@@ -70,6 +72,7 @@ public class CidadeDao implements Serializable {
         }
         return null;
     }
+
     public List<Estado> listagemSiglaEstados(String filtro) {
 
         Session sessao = HibernateUtil.getSessionFactory().openSession();
@@ -92,7 +95,7 @@ public class CidadeDao implements Serializable {
             sessao.close();
 
         }
-      
+
     }
 
     public Estado pesqEstado(String est_sigla) {
@@ -113,6 +116,27 @@ public class CidadeDao implements Serializable {
             sessao.close();
         }
 
+    }
+
+    public Estado pesqEstadoId(int est_id) {
+        Session sessao = HibernateUtil.getSessionFactory().openSession();
+        try {
+            Criteria consulta = null;
+            if (est_id == 0) {
+                consulta = sessao.createCriteria(Estado.class);
+            } else {
+                consulta = sessao.createCriteria(Estado.class);
+                consulta.add(Restrictions.eq("est_id", est_id));
+                consulta.addOrder(Order.asc("id"));
+                List lsest = consulta.list();
+                return(Estado) consulta.uniqueResult();
+            }
+        } catch (RuntimeException erro) {
+            throw erro;
+        } finally {
+            sessao.close();
+        }
+        return null;
     }
 
     public Cidade pesqCidade(int cid_id) {
