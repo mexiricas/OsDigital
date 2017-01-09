@@ -15,6 +15,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import osdigital.model.Aparelho;
@@ -102,9 +103,10 @@ public class AparelhoDao implements Serializable {
                 return null;
             } else {
                 consulta = sessao.createCriteria(Aparelho.class);
-                consulta.setProjection(Projections.distinct(Projections.property("apcdMarca")));
-                consulta.add(Restrictions.ilike("apcdMarca", "%" + marca + "%"));
-                return (Aparelho) consulta.uniqueResult();
+                consulta.add(Restrictions.ilike("apcdMarca",  marca + "%"));
+                consulta.addOrder(Order.asc("apcdMarca"));
+                lscid = consulta.list();
+                return (Aparelho) lscid.get(0); 
             }
         } catch (RuntimeException erro) {
             throw erro;
