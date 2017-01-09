@@ -8,6 +8,7 @@ package osdigital.forms;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +27,9 @@ import osdigital.util.Mascara;
  * @author HJ-Sistemas
  */
 public class frmOsPrincipal extends javax.swing.JFrame {
-     Mascara mask = new Mascara();
+
+    Mascara mask = new Mascara();
+
     /**
      * Creates new form frmOsPrincipal
      */
@@ -35,7 +38,6 @@ public class frmOsPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -232,12 +234,13 @@ public class frmOsPrincipal extends javax.swing.JFrame {
             frmCliente fm = new frmCliente();
             PessoaRN rn = new PessoaRN();
             JFormattedTextField cpf = new JFormattedTextField();
-             mask.maskCPF(cpf);
+            mask.maskCPF(cpf);
             JLabel rotulo = new JLabel("Digite CPF:");
             JPanel tela = new JPanel();
             tela.add(rotulo);
             tela.add(cpf);
-            JOptionPane.showMessageDialog(rootPane, null, "Pesquisar Cliente Cadastrado", JOptionPane.QUESTION_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, tela, "Pesquisar Cliente Cadastrado", JOptionPane.QUESTION_MESSAGE);
+            
             Pessoa cli = rn.trazCadastro(cpf.getText());
             if (cli == null) {
                 JOptionPane.showMessageDialog(frmOsPrincipal.this, "CPF inválido", "Erro", JOptionPane.ERROR_MESSAGE);
