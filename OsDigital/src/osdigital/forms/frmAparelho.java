@@ -51,7 +51,7 @@ public class frmAparelho extends javax.swing.JFrame {
 
                     try {
                         AparelhoDao apDao = new AparelhoDao();
-                        List<Aparelho> ap = apDao.pesqAparelhoModelo(cadenaEscrita);
+                        List<String> ap = apDao.pesqAparelhoModelo(cadenaEscrita);
                         EstadoComboBox model = new EstadoComboBox(ap);
                         boxNombre.setModel(model);
                     } catch (Exception e) {
